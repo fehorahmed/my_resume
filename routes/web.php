@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SkillController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    Route::prefix('skills')->group(function(){
+        Route::get('/list', [SkillController::class, 'index'])->name('skill.index');
+        Route::get('/create', [SkillController::class, 'create'])->name('skill.create');
+        Route::post('/create', [SkillController::class, 'store']);
+        Route::get('{skill}/edit', [SkillController::class, 'edit'])->name('skill.edit');
+    });
+
+
 });
 
 require __DIR__ . '/auth.php';
