@@ -21,7 +21,7 @@ class SkillController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.skill.create');
     }
 
     /**
@@ -29,7 +29,22 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            "title" => 'required|string|max:255|unique:skills,title',
+            "percentage" => 'required|numeric|max:100',
+            "status" => 'required|boolean',
+        ]);
+
+
+        $skill = new Skill();
+        $skill->title= $request->title;
+        $skill->percentage= $request->percentage;
+        $skill->status= $request->status;
+        $skill->save();
+
+        return redirect()->route('skill.index')->with('success','Skill Added Successfully.');
+
     }
 
     /**

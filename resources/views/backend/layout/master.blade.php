@@ -111,6 +111,8 @@
     <script src="{{asset('backend')}}/plugins/flot-charts/jquery.flot.categories.js"></script>
     <script src="{{asset('backend')}}/plugins/flot-charts/jquery.flot.time.js"></script>
 
+
+    <script src="{{asset('backend')}}/js/pages/ui/notifications.js"></script>
     <!-- Sparkline Chart Plugin Js -->
     <script src="{{asset('backend')}}/plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
@@ -120,6 +122,21 @@
 
     <!-- Demo Js -->
     <script src="{{asset('backend')}}/js/demo.js"></script>
+
+
+    <script>
+
+        @if (session('success'))
+
+        var mess= '{{session('success')}}'
+        showNotification('bg-light-green',mess , 'top', 'right', null, null);
+        @endif
+
+
+    </script>
+
+
+
 </body>
 
 
